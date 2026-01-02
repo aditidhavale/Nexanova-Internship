@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trainer & Subject Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Trainer & Subject Management</h1>
+
+    <!-- ADD TRAINER -->
+    <div class="form-container">
+        <h2>Add Trainer</h2>
+        <form action="/add_trainer" method="POST">
+            <input type="text" name="trainer_name" placeholder="Trainer Name" required>
+            <button type="submit">Add Trainer</button>
+        </form>
+    </div>
+
+    <!-- ADD SUBJECT -->
+    <div class="form-container">
+        <h2>Add Subject</h2>
+        <form action="/add_subject" method="POST">
+            <input type="text" name="subject_name" placeholder="Subject Name" required>
+            <select name="trainer_id" required>
+                <option value="">Select Trainer</option>
+                {% for trainer in trainers %}
+                    <option value="{{ trainer.id }}">{{ trainer.name }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Add Subject</button>
+        </form>
+    </div>
+
+    <!-- TRAINERS LIST -->
+    <h2>All Trainers</h2>
+    <table>
+        <tr>
+            <th>ID</th><th>Name</th><th>Action</th>
+        </tr>
+        {% for trainer in trainers %}
+        <tr>
+            <td>{{ trainer.id }}</td>
+            <td>{{ trainer.name }}</td>
+            <td>
+                <a href="/trainer/{{ trainer.id }}/delete">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!-- SUBJECTS LIST -->
+    <h2>All Subjects</h2>
+    <table>
+        <tr>
+            <th>ID</th><th>Name</th><th>Trainer</th>
+        </tr>
+        {% for subject in subjects %}
+        <tr>
+            <td>{{ subject.id }}</td>
+            <td>{{ subject.name }}</td>
+            <td>{{ subject.trainer_id }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html> 

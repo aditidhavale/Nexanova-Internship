@@ -1,0 +1,107 @@
+/* General body styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f4f8;
+    margin: 30px;
+    color: #333;
+}
+
+/* Main heading */
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
+
+/* Sub-headings */
+h2 {
+    color: #34495e;
+    margin-bottom: 10px;
+}
+
+/* Form containers */
+.form-container {
+    background-color: #fff;
+    padding: 20px 25px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.form-container:hover {
+    transform: translateY(-3px);
+}
+
+/* Input fields and select */
+input[type="text"], input[type="number"], select {
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: calc(100% - 22px);
+    box-sizing: border-box;
+    font-size: 14px;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"]:focus, input[type="number"]:focus, select:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+    outline: none;
+}
+
+/* Buttons */
+button {
+    padding: 10px 18px;
+    background-color: #3498db;
+    border: none;
+    color: white;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+button:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+th {
+    background-color: #3498db;
+    color: white;
+    font-weight: 600;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f6fb;
+}
+
+tr:hover {
+    background-color: #e1f0ff;
+}
+
+/* Responsive layout for small screens */
+@media (max-width: 600px) {
+    input[type="text"], input[type="number"], select, button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
