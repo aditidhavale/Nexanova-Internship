@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Evaluation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<script>
+    let role = "{{ role }}";   // ✅ get role
+</script>
+
+<h2>Evaluation</h2>
+
+<!-- ================= ORIGINAL FORM ================= -->
+<div id="evaluationForm">
+
+<div class="card">
+<input id="participant" placeholder="Participant">
+<input id="evaluator" placeholder="Evaluator">
+<input id="tech" placeholder="Technology">
+<input id="round" placeholder="Round">
+<input id="score" placeholder="Score">
+<textarea id="feedback" placeholder="Feedback"></textarea>
+
+<button onclick="submitEval()">Submit</button>
+</div>
+
+<div class="card">
+<h3>Assigned Evaluations</h3>
+<input id="evalname" placeholder="Evaluator Name">
+<button onclick="getAssignments()">Load</button>
+<ul id="assignList"></ul>
+</div>
+
+</div>
+
+<!-- ================= EVALUATOR PANEL ================= -->
+<div id="evaluatorPanel" style="display:none;">
+    <h3>Evaluator Panel</h3>
+
+    <button onclick="viewParticipants()">View Participants</button>
+
+    <ul id="participantList"></ul>
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+<script>
+    // ✅ Show only participants button for evaluator
+    if(role === "EVALUATOR"){
+        document.getElementById("evaluationForm").style.display = "none";
+        document.getElementById("evaluatorPanel").style.display = "block";
+    }
+</script>
+
+</body>
+</html>

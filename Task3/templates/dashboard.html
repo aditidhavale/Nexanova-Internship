@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<script>
+    let role = "{{ role }}";   // ✅ get role from backend
+</script>
+
+<h2>Admin Dashboard</h2>
+
+<!-- ================= OLD FULL DASHBOARD ================= -->
+<div id="adminFullDashboard">
+
+<div class="dashboard">
+
+<!-- Batch -->
+<div class="card">
+<h3>Create Batch</h3>
+<input id="bname" placeholder="Batch Name">
+<input id="start" type="date">
+<input id="end" type="date">
+<button onclick="createBatch()">Create</button>
+</div>
+
+<!-- Technology -->
+<div class="card">
+<h3>Create Technology</h3>
+<input id="techname" placeholder="Technology">
+<button onclick="createTech()">Add</button>
+</div>
+
+<!-- Rounds -->
+<div class="card">
+<h3>Configure Rounds</h3>
+<input id="rbatch" placeholder="Batch">
+<input id="rtech" placeholder="Technology">
+<input id="rounds" placeholder="Total Rounds">
+<button onclick="setRounds()">Set</button>
+</div>
+
+<!-- User -->
+<div class="card">
+<h3>Add User</h3>
+<input id="uname" placeholder="Name">
+<input id="uemail" placeholder="Email">
+<input id="upass" placeholder="Password">
+<select id="urole">
+<option>ADMIN</option>
+<option>EVALUATOR</option>
+</select>
+<button onclick="addUser()">Add</button>
+</div>
+
+<!-- Participant -->
+<div class="card">
+<h3>Add Participant</h3>
+<input id="pname" placeholder="Name">
+<input id="pbatch" placeholder="Batch">
+<input id="ptech" placeholder="Technology">
+<button onclick="addParticipant()">Add</button>
+</div>
+
+<!-- Assign -->
+<div class="card">
+<h3>Assign Evaluator</h3>
+<input id="aparticipant" placeholder="Participant">
+<input id="aevaluator" placeholder="Evaluator">
+<input id="atech" placeholder="Technology">
+<input id="around" placeholder="Round">
+<button onclick="assignEval()">Assign</button>
+</div>
+
+</div>
+</div>
+
+<!-- ================= ADMIN ACTION PANEL ================= -->
+<div id="adminActions" style="display:none;">
+    <h3>Admin Actions</h3>
+
+    <button onclick="viewBatch()">View Batch</button>
+    <button onclick="updateBatch()">Update Batch</button>
+    <button onclick="deleteBatch()">Delete Batch</button>
+
+    <br><br>
+
+    <button onclick="viewTech()">View Technology</button>
+    <button onclick="updateTech()">Update Technology</button>
+    <button onclick="deleteTech()">Delete Technology</button>
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+<script>
+    // ✅ Show correct UI after login
+    if(role === "ADMIN"){
+        document.getElementById("adminFullDashboard").style.display = "none";
+        document.getElementById("adminActions").style.display = "block";
+    }
+</script>
+
+</body>
+</html>

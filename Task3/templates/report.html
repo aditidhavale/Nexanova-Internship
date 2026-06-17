@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Report</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h2>Reports</h2>
+
+<div class="card">
+<input id="rtechfilter" placeholder="Technology">
+<button onclick="getReport()">View Report</button>
+<ul id="reportList"></ul>
+</div>
+
+<div class="card">
+<input id="avgtech" placeholder="Technology">
+<button onclick="getAvg()">Get Avg per Round</button>
+<ul id="avgList"></ul>
+</div>
+
+<div class="card">
+<button onclick="exportData()">Export CSV</button>
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
