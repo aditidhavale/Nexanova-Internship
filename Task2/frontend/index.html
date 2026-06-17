@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Training Institute Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Training Institute Management System</h1>
+    <button onclick="logout()">Logout</button>
+</header>
+
+<!-- AUTH SECTION -->
+<section id="authSection">
+    <h2>Login / Register</h2>
+
+    <input id="name" placeholder="Name">
+    <input id="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Password">
+
+    <select id="role">
+        <option value="Admin">Admin</option>
+        <option value="Trainer">Trainer</option>
+        <option value="Student">Student</option>
+    </select>
+
+    <button onclick="register()">Register</button>
+    <button onclick="login()">Login</button>
+</section>
+
+<!-- ADMIN DASHBOARD -->
+<section id="adminDashboard" class="hidden">
+    <h2>Admin Dashboard</h2>
+
+    <div class="buttons">
+        <button onclick="viewTrainers()">View Trainers</button>
+        <button onclick="viewCourses()">View Courses & Modules</button>
+        <button onclick="createSchedule()">Create Weekly Schedule</button>
+        <button onclick="viewSchedule()">View Schedule</button>
+    </div>
+
+    <h3>Courses & Modules</h3>
+    <div id="coursesModulesOutput"></div>
+
+    <h3>Enroll Student</h3>
+    <label for="studentDropdown">Select Student:</label>
+    <select id="studentDropdown">
+        <option value="">Select Student</option>
+    </select>
+
+    <label for="courseDropdown">Select Course:</label>
+    <select id="courseDropdown">
+        <option value="">Select Course</option>
+    </select>
+
+    <button onclick="enrollStudent()">Enroll</button>
+
+    <h3>Allocate Slot (FR4)</h3>
+    <div class="allocate-slot-row">
+        <select id="slotDayDropdown">
+            <option value="">Select Day</option>
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+        </select>
+
+        <select id="slotTimeDropdown">
+            <option value="">Select Time</option>
+            <option value="8-11">8-11</option>
+            <option value="11-2">11-2</option>
+            <option value="2-5">2-5</option>
+            <option value="5-8">5-8</option>
+        </select>
+
+        <select id="slotCourseDropdown">
+            <option value="">Select Course</option>
+        </select>
+
+        <select id="slotTrainerDropdown">
+            <option value="">Select Trainer</option>
+        </select>
+
+        <button onclick="allocateSlot()">Allocate</button>
+    </div>
+    <div id="slotOutput"></div>
+
+    <h3>Bulk Upload Students (CSV)</h3>
+    <input type="file" id="csvFile">
+    <button onclick="bulkUpload()">Upload</button>
+
+    <h3>Bulk Enroll Students in Courses (CSV)</h3>
+    <input type="file" id="csvFile">
+    <button onclick="bulkUpload()">Upload</button>
+
+    
+
+    <div id="adminOutput"></div>
+</section>
+
+<!-- STUDENT DASHBOARD -->
+<section id="studentDashboard" class="hidden">
+    <h2>Student Dashboard</h2>
+    <button onclick="viewTimetable()">View Timetable</button>
+    <div id="studentOutput"></div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
