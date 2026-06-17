@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h2>Student Dashboard</h2>
+
+<div class="top-bar">
+    <a href="/student/results">View Overall Results</a>
+    <a href="/logout">Logout</a>
+</div>
+
+<!-- ================= FLASH ================= -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+        <p class="flash {{ category }}">{{ message }}</p>
+    {% endfor %}
+{% endwith %}
+
+<!-- ================= QUIZ LIST ================= -->
+<div class="dashboard">
+
+    <div class="card">
+        <h3>Today's Quizzes</h3>
+
+        {% if quizzes %}
+            <table>
+                <tr>
+                    <th>Quiz Title</th>
+                    <th>Duration</th>
+                    <th>Start Time</th>
+                    <th>Action</th>
+                </tr>
+
+                {% for quiz in quizzes %}
+                <tr>
+                    <td>{{ quiz.title }}</td>
+                    <td>{{ quiz.duration }} mins</td>
+                    <td>{{ quiz.start_time }}</td>
+                    <td>
+                        <a href="/student/start_quiz/{{ quiz.id }}">
+                            <button>Start</button>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+
+            </table>
+        {% else %}
+            <p>No quizzes scheduled for today</p>
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+</html>

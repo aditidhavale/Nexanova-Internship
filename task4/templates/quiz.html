@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h2>{{ quiz.title }}</h2>
+
+<!-- TIMER -->
+<div class="timer">
+    Time Left: <span id="time">{{ quiz.duration * 60 }}</span> sec
+</div>
+
+<div class="quiz-container">
+
+    <!-- ================= QUESTIONS ================= -->
+    <div class="question-area">
+
+        {% for q in questions %}
+        <div class="question" id="q{{ loop.index0 }}" style="display:none;">
+
+            <h3>Q{{ loop.index }}. {{ q.question_text }}</h3>
+
+            <form class="answer-form">
+                <input type="hidden" name="quiz_id" value="{{ quiz.id }}">
+                <input type="hidden" name="question_id" value="{{ q.id }}">
+
+                <label><input type="radio" name="selected_answer" value="option1"> {{ q.option1 }}</label><br>
+                <label><input type="radio" name="selected_answer" value="option2"> {{ q.option2 }}</label><br>
+                <label><input type="radio" name="selected_answer" value="option3"> {{ q.option3 }}</label><br>
+                <label><input type="radio" name="selected_answer" value="option4"> {{ q.option4 }}</label><br>
+
+            </form>
+        </div>
+        {% endfor %}
+
+        <!-- NAV BUTTONS -->
+        <div class="nav-buttons">
+            <button onclick="prevQuestion()">Previous</button>
+            <button onclick="nextQuestion()">Next</button>
+        </div>
+
+        <!-- SUBMIT -->
+        <form method="POST" action="/quiz/submit_quiz/{{ quiz.id }}" onsubmit="return confirmSubmit()">
+            <button type="submit" class="submit-btn">Submit Quiz</button>
+        </form>
+
+    </div>
+
+    <!-- ================= NAV PANEL ================= -->
+    <div class="nav-panel">
+        <h4>Questions</h4>
+
+        {% for q in questions %}
+        <button class="nav-btn red" id="nav{{ loop.index0 }}"
+                onclick="goToQuestion({{ loop.index0 }})">
+            {{ loop.index }}
+        </button>
+        {% endfor %}
+    </div>
+
+</div>
+
+<!-- ✅ IMPORTANT: ONLY THIS SCRIPT -->
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h2>Overall Results</h2>
+
+<div class="top-bar">
+    <a href="/student/dashboard">Back to Dashboard</a>
+    <a href="/logout">Logout</a>
+</div>
+
+<!-- ================= SUMMARY ================= -->
+<div class="summary">
+
+    <div class="card">
+        <h3>Total Quizzes Attempted</h3>
+        <p>{{ total_quizzes }}</p>
+    </div>
+
+    <div class="card">
+        <h3>Average Score</h3>
+        <p>{{ avg_score }} %</p>
+    </div>
+
+    <div class="card">
+        <h3>Best Score</h3>
+        <p>{{ best_score }} %</p>
+    </div>
+
+</div>
+
+<!-- ================= FLASH ================= -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+        <p class="flash {{ category }}">{{ message }}</p>
+    {% endfor %}
+{% endwith %}
+
+<!-- ================= RESULT TABLE ================= -->
+<div class="dashboard">
+
+    <div class="card">
+        <h3>Quiz History</h3>
+
+        {% if results %}
+        <table>
+            <tr>
+                <th>Quiz ID</th>
+                <th>Date</th>
+                <th>Total Marks</th>
+                <th>Obtained Marks</th>
+                <th>Percentage</th>
+                <th>Status</th>
+            </tr>
+
+            {% for r in results %}
+            <tr>
+                <td>{{ r.quiz_id }}</td>
+                <td>{{ r.created_at.strftime('%Y-%m-%d') }}</td>
+                <td>{{ r.total_marks }}</td>
+                <td>{{ r.obtained_marks }}</td>
+                <td>{{ r.percentage }} %</td>
+                <td>{{ r.status }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+            <p>No quiz attempts yet</p>
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+</html>
